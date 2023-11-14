@@ -181,4 +181,5 @@ contrib/mptcp/CMakeFiles/libmptcp-obj.dir/model/mp-tcp-subflow.cc.o: \
  /home/rome/Programming/ns3.40-mptcp/ns-allinone-3.40/ns-3.40/src/core/model/object.h \
  /home/rome/Programming/ns3.40-mptcp/ns-allinone-3.40/ns-3.40/build/include/ns3/log.h \
  /home/rome/Programming/ns3.40-mptcp/ns-allinone-3.40/ns-3.40/src/core/model/log.h \
- /home/rome/Programming/ns3.40-mptcp/ns-allinone-3.40/ns-3.40/contrib/mptcp/model/mp-tcp-subflow.h
+ /home/rome/Programming/ns3.40-mptcp/ns-allinone-3.40/ns-3.40/contrib/mptcp/model/mp-tcp-subflow.h \
+ /home/rome/Programming/ns3.40-mptcp/ns-allinone-3.40/ns-3.40/contrib/mptcp/model/mp-tcp-typedefs.h

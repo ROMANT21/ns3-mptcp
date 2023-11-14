@@ -21,6 +21,7 @@
 #ifndef MP_TCP_SUBFLOW_H
 #define MP_TCP_SUBFLOW_H
 
+#include "mp-tcp-typedefs.h"
 #include <stdint.h>
 #include <vector>
 #include <queue>
@@ -39,33 +40,6 @@
 #include "ns3/ipv4-end-point.h"
 #include "ns3/ipv4-address.h"
 
-enum TcpStates_t
-{
-    CLOSED = 0,  /**< Socket is finished                                     */
-    LISTEN,      /**< Listening for a connection                             */
-    SYN_SENT,    /**< Sent a connection request, waiting for ack             */
-    SYN_RCVD,    /**< Received a connection request, sent ack,
-                  *  waiting for final ack in three-way handshake.          */
-    ESTABLISHED, /**< Connection established                                 */
-    CLOSE_WAIT,  /**< Remote side has shutdown and is waiting for
-                  *  us to finish writing our data and to shutdown
-                  *  (we have to close() to move on to LAST_ACK)            */
-    LAST_ACK,    /**< Our side has shutdown after remote has
-                  *  shutdown.  There may still be data in our
-                  *  buffer that we have to finish sending                  */
-    FIN_WAIT_1,  /**< Our side has shutdown, waiting to complete
-                  *  transmission of remaining buffered data                */
-    FIN_WAIT_2,  /**< All buffered data sent, waiting for remote to shutdown */
-    CLOSING,     /**< Both sides have shutdown but we still have
-                  *  data we have to finish sending                         */
-    TIME_WAIT,   /**< Timeout to catch resent junk before entering
-                  *  closed, can only be entered from FIN_WAIT2
-                  *  or CLOSING.  Required because the other end
-                  *  may not have gotten our last ACK causing it
-                  *  to retransmit the data packet (which we ignore)        */
-    LAST_STATE   /**< Last state, used only in debug messages                */
-};
-
 using namespace std;
 
 namespace ns3{
@@ -73,21 +47,21 @@ namespace ns3{
 class MpTcpSubFlow : public Object
 {
 public:
-  static TypeId GetTypeId(void);
+    static TypeId GetTypeId();  // For creating MpTcpSubflow Type ID
 
-  MpTcpSubFlow();
-  ~MpTcpSubFlow();
+    MpTcpSubFlow();             // Constructor
+    ~MpTcpSubFlow() override;   // Deconstuctor
 
-  void AddDSNMapping(uint8_t sFlowIdx, uint64_t dSeqNum, uint16_t dLvlLen, uint32_t sflowSeqNum, uint32_t ack/*, Ptr<Packet> pkt*/);
-  void StartTracing(string traced);
-  void CwndTracer(uint32_t oldval, uint32_t newval);
+  void AddDSNMapping(uint8_t sFlowIdx, uint64_t dSeqNum, uint16_t dLvlLen, uint32_t sflowSeqNum, uint32_t ack/*, Ptr<Packet> pkt*/); // Push a new DSN onto the Subflow
+  void StartTracing(string traced);     // Start Tracing for Logging
+  void CwndTracer(uint32_t oldval, uint32_t newval);    // The Congestion Window Tracer
   void SetFinSequence(const SequenceNumber32& s);
-  bool Finished();
-  DSNMapping *GetunAckPkt();
+  bool Finished();              // Subflow is finished transmitting information
+  DSNMapping *GetunAckPkt();    // ???
 
   uint16_t routeId;           // Subflow's ID
   bool connected;             // Subflow's connection status
-  TcpStates_t state;          // Subflow's connection state
+  TcpSocket::TcpStates_t state;          // Subflow's connection state
   Ipv4Address sAddr;          // Source Ip address
   uint16_t sPort;             // Source port
   Ipv4Address dAddr;          // Destination address

@@ -80,7 +80,7 @@ DataBuffer::Add(uint32_t size)
   // read data from buf and insert it into the DataBuffer instance
   NS_LOG_FUNCTION (this << (int) size << (int) (bufMaxSize - (uint32_t) buffer.size()) );
   uint32_t toWrite = std::min(size, (bufMaxSize - (uint32_t) buffer.size()));
-  if (buffer.empty() == true)
+  if (buffer.empty())
     {
       NS_LOG_INFO("DataBuffer::Add -> buffer is empty !");
     }
@@ -180,7 +180,7 @@ DataBuffer::CreatePacket(uint32_t size)
   if (quantity == 0)
     {
       NS_LOG_INFO("DataBuffer::CreatePacket -> No data ready for sending !");
-      return 0;
+      return nullptr;
     }
   // Copy from front of Buffer to a new uint8_t array pointer
   //uint8_t *ptrBuffer = new uint8_t[quantity];

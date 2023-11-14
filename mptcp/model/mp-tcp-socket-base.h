@@ -22,7 +22,7 @@
 #define MP_TCP_SOCKET_BASE_H
 
 #include "ns3/mp-tcp-typedefs.h"
-#include "ns3/tcp-socket-base.h"
+#include "old-tcp-socket-base.h"
 #include "ns3/gnuplot.h"
 #include "mp-tcp-subflow.h"
 #include "ns3/output-stream-wrapper.h"
@@ -43,7 +43,7 @@ class MpTcpSocketBase : public TcpSocketBase
 {
 public: // public methods
 
-  static TypeId GetTypeId();
+  static TypeId GetTypeId(void);
   MpTcpSocketBase();
   MpTcpSocketBase(Ptr<Node> node);
   virtual ~MpTcpSocketBase();
@@ -109,7 +109,7 @@ public: // public variables
   uint32_t m_rGap;
   bool m_shortFlowTCP;
   //
-  //GnuplotCollection gnu;
+  GnuplotCollection gnu;
   std::list<uint32_t> sampleList;
 
   vector<pair<double, double> > totalCWNDtrack;
@@ -177,7 +177,7 @@ protected: // protected methods
   void ProcessWait    (uint8_t sFlowIdx, Ptr<Packet>, const TcpHeader&);
   void ProcessClosing (uint8_t sFlowIdx, Ptr<Packet>, const TcpHeader&);
   void ProcessLastAck (uint8_t sFlowIdx, Ptr<Packet>, const TcpHeader&);
-  uint8_t ProcessOption(TcpOptions *opt);
+  uint8_t ProcessOption(TcpOption *opt);
 
   // Window Management
   virtual uint32_t BytesInFlight(uint8_t sFlowIdx);  // Return total bytes in flight of a subflow
@@ -194,8 +194,8 @@ protected: // protected methods
   virtual bool ReadOptions (Ptr<Packet> pkt, const TcpHeader&); // Read option from incoming packets (Listening Socket only)
   virtual void DupAck(const TcpHeader& t, uint32_t count);  // Not in operation, it's pure virtual function from TcpSocketBase
   virtual void DupAck(uint8_t sFlowIdx, DSNMapping * ptrDSN);       // Congestion control algorithms -> loss recovery
-  virtual void NewACK(uint8_t sFlowIdx, const TcpHeader&, TcpOptions* opt);
-  void NewAckNewReno(uint8_t sFlowIdx, const TcpHeader&, TcpOptions* opt);
+  virtual void NewACK(uint8_t sFlowIdx, const TcpHeader&, TcpOption* opt);
+  void NewAckNewReno(uint8_t sFlowIdx, const TcpHeader&, TcpOption* opt);
   virtual void DoRetransmit (uint8_t sFlowIdx);
   virtual void DoRetransmit (uint8_t sFlowIdx, DSNMapping* ptrDSN);
   void SetReTxTimeout(uint8_t sFlowIdx);

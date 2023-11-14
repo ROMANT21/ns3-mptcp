@@ -136,8 +136,7 @@ contrib/mptcp/CMakeFiles/libmptcp-obj.dir/model/mp-tcp-socket-base.cc.o: CMakeFi
   src/network/utils/sequence-number.h \
   build/include/ns3/type-name.h \
   src/core/model/type-name.h \
-  build/include/ns3/rtt-estimator.h \
-  src/internet/model/rtt-estimator.h \
+  contrib/mptcp/model/old-rtt-estimator.h \
   build/include/ns3/nstime.h \
   src/core/model/nstime.h \
   src/core/model/event-id.h \
@@ -148,7 +147,6 @@ contrib/mptcp/CMakeFiles/libmptcp-obj.dir/model/mp-tcp-socket-base.cc.o: CMakeFi
   /usr/include/c++/11/cmath \
   /usr/include/math.h \
   /usr/include/c++/11/bits/std_abs.h \
-  /usr/include/c++/11/cstdint \
   build/include/ns3/event-id.h \
   src/core/model/event-id.h \
   build/include/ns3/packet.h \
@@ -211,11 +209,14 @@ contrib/mptcp/CMakeFiles/libmptcp-obj.dir/model/mp-tcp-socket-base.cc.o: CMakeFi
   src/internet/model/ipv4-interface.h \
   build/include/ns3/net-device.h \
   src/network/model/net-device.h \
-  build/include/ns3/tcp-socket-base.h \
-  src/internet/model/tcp-socket-base.h \
-  src/internet/model/ipv6-header.h \
-  src/internet/model/tcp-socket-state.h \
-  src/internet/model/tcp-rx-buffer.h \
+  contrib/mptcp/model/old-tcp-socket-base.h \
+  build/include/ns3/ipv4-header.h \
+  src/internet/model/ipv4-header.h \
+  build/include/ns3/ipv4-interface.h \
+  src/internet/model/ipv4-interface.h \
+  contrib/mptcp/model/old-tcp-tx-buffer.h \
+  contrib/mptcp/model/old-tcp-rx-buffer.h \
+  build/include/ns3/tcp-header.h \
   src/internet/model/tcp-header.h \
   src/internet/model/tcp-option.h \
   build/include/ns3/buffer.h \
@@ -226,28 +227,18 @@ contrib/mptcp/CMakeFiles/libmptcp-obj.dir/model/mp-tcp-socket-base.cc.o: CMakeFi
   src/internet/model/tcp-socket-factory.h \
   build/include/ns3/socket-factory.h \
   src/network/model/socket-factory.h \
-  src/internet/model/tcp-option-sack.h \
-  build/include/ns3/data-rate.h \
-  src/network/utils/data-rate.h \
-  src/internet/model/tcp-socket.h \
-  build/include/ns3/node.h \
-  src/network/model/node.h \
-  build/include/ns3/timer.h \
-  src/core/model/timer.h \
-  src/core/model/int-to-type.h \
-  src/core/model/nstime.h \
-  src/core/model/timer-impl.h \
-  src/core/model/simulator.h \
-  src/core/model/make-event.h \
-  src/core/model/object-factory.h \
   build/include/ns3/gnuplot.h \
   src/stats/model/gnuplot.h \
   contrib/mptcp/model/mp-tcp-subflow.h \
+  contrib/mptcp/model/mp-tcp-typedefs.h \
+  build/include/ns3/rtt-estimator.h \
+  src/internet/model/rtt-estimator.h \
   build/include/ns3/output-stream-wrapper.h \
   src/network/utils/output-stream-wrapper.h \
   build/include/ns3/tcp-l4-protocol.h \
   src/internet/model/tcp-l4-protocol.h \
   src/internet/model/ip-l4-protocol.h \
+  src/internet/model/ipv6-header.h \
   build/include/ns3/ipv4-l3-protocol.h \
   src/internet/model/ipv4-l3-protocol.h \
   src/internet/model/ipv4-routing-protocol.h \
@@ -256,6 +247,9 @@ contrib/mptcp/CMakeFiles/libmptcp-obj.dir/model/mp-tcp-socket-base.cc.o: CMakeFi
   src/internet/model/ipv4-route.h \
   build/include/ns3/simulator.h \
   src/core/model/simulator.h \
+  src/core/model/make-event.h \
+  src/core/model/nstime.h \
+  src/core/model/object-factory.h \
   build/include/ns3/error-model.h \
   src/network/utils/error-model.h \
   build/include/ns3/random-variable-stream.h \
@@ -264,8 +258,12 @@ contrib/mptcp/CMakeFiles/libmptcp-obj.dir/model/mp-tcp-socket-base.cc.o: CMakeFi
   src/point-to-point/model/point-to-point-channel.h \
   build/include/ns3/channel.h \
   src/network/model/channel.h \
+  build/include/ns3/data-rate.h \
+  src/network/utils/data-rate.h \
   build/include/ns3/point-to-point-net-device.h \
   src/point-to-point/model/point-to-point-net-device.h \
+  build/include/ns3/node.h \
+  src/network/model/node.h \
   build/include/ns3/queue-fwd.h \
   src/network/utils/queue-fwd.h \
   build/include/ns3/pointer.h \
@@ -484,7 +482,8 @@ contrib/mptcp/CMakeFiles/libmptcp-obj.dir/model/mp-tcp-subflow.cc.o: CMakeFiles/
   src/core/model/object.h \
   build/include/ns3/log.h \
   src/core/model/log.h \
-  contrib/mptcp/model/mp-tcp-subflow.h
+  contrib/mptcp/model/mp-tcp-subflow.h \
+  contrib/mptcp/model/mp-tcp-typedefs.h
 
 contrib/mptcp/CMakeFiles/libmptcp-obj.dir/model/mp-tcp-typedefs.cc.o: CMakeFiles/stdlib_pch-default.dir/cmake_pch.hxx \
   contrib/mptcp/model/mp-tcp-typedefs.cc \
@@ -706,6 +705,8 @@ build/include/ns3/drop-tail-queue.h:
 
 src/network/utils/queue-fwd.h:
 
+build/include/ns3/node.h:
+
 src/point-to-point/model/point-to-point-net-device.h:
 
 build/include/ns3/point-to-point-net-device.h:
@@ -726,19 +727,13 @@ src/internet/model/ipv4-l3-protocol.h:
 
 src/internet/model/ip-l4-protocol.h:
 
+build/include/ns3/rtt-estimator.h:
+
 contrib/mptcp/model/mp-tcp-subflow.h:
 
 src/stats/model/gnuplot.h:
 
 build/include/ns3/gnuplot.h:
-
-src/core/model/timer.h:
-
-build/include/ns3/timer.h:
-
-build/include/ns3/node.h:
-
-src/network/utils/data-rate.h:
 
 build/include/ns3/socket-factory.h:
 
@@ -746,11 +741,17 @@ src/core/model/object-factory.h:
 
 src/internet/model/tcp-header.h:
 
-src/core/model/timer-impl.h:
+build/include/ns3/tcp-header.h:
 
-src/internet/model/tcp-rx-buffer.h:
+src/network/utils/data-rate.h:
 
-src/internet/model/tcp-socket-state.h:
+build/include/ns3/ipv4-interface.h:
+
+build/include/ns3/ipv4-header.h:
+
+/usr/include/c++/11/cstdint:
+
+src/internet/model/ipv4-header.h:
 
 src/internet/model/ipv4-end-point.h:
 
@@ -820,13 +821,11 @@ src/network/model/tag-buffer.h:
 
 build/include/ns3/event-id.h:
 
-src/internet/model/ipv4-header.h:
-
-/usr/include/c++/11/cstdint:
-
 build/include/ns3/tcp-socket.h:
 
 /usr/include/math.h:
+
+contrib/mptcp/model/old-tcp-rx-buffer.h:
 
 src/core/model/int64x64.h:
 
@@ -836,7 +835,7 @@ src/core/model/event-impl.h:
 
 build/include/ns3/nstime.h:
 
-build/include/ns3/rtt-estimator.h:
+contrib/mptcp/model/old-rtt-estimator.h:
 
 src/network/utils/sequence-number.h:
 
@@ -932,8 +931,6 @@ build/include/ns3/ipv4-address.h:
 
 src/core/model/attribute-accessor-helper.h:
 
-src/internet/model/tcp-socket-base.h:
-
 /usr/include/c++/11/memory:
 
 /usr/include/stdc-predef.h:
@@ -996,8 +993,6 @@ src/core/model/log.h:
 
 /usr/include/c++/11/bits/uses_allocator.h:
 
-src/internet/model/tcp-option-sack.h:
-
 src/core/model/log-macros-disabled.h:
 
 src/core/model/time-printer.h:
@@ -1013,8 +1008,6 @@ src/core/model/simple-ref-count.h:
 build/include/ns3/ptr.h:
 
 /usr/include/c++/11/string:
-
-build/include/ns3/tcp-socket-base.h:
 
 /usr/include/c++/11/bits/deque.tcc:
 
@@ -1090,6 +1083,8 @@ build/include/ns3/trace-source-accessor.h:
 
 /usr/include/c++/11/typeinfo:
 
+contrib/mptcp/model/old-tcp-tx-buffer.h:
+
 /usr/include/c++/11/bits/stl_raw_storage_iter.h:
 
 build/include/ns3/type-name.h:
@@ -1119,6 +1114,8 @@ src/core/model/random-variable-stream.h:
 src/network/utils/queue-item.h:
 
 build/include/ns3/buffer.h:
+
+contrib/mptcp/model/old-tcp-socket-base.h:
 
 src/core/model/hash-fnv.h:
 
@@ -1183,8 +1180,6 @@ src/core/model/warnings.h:
 build/include/ns3/inet-socket-address.h:
 
 src/core/model/type-name.h:
-
-src/core/model/int-to-type.h:
 
 src/core/model/boolean.h:
 

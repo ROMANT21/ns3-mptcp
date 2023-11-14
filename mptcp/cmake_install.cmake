@@ -68,8 +68,8 @@ endif()
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/ns3" TYPE FILE FILES
     "/home/rome/Programming/ns3.40-mptcp/ns-allinone-3.40/ns-3.40/contrib/mptcp/model/mp-tcp-typedefs.h"
-    "/home/rome/Programming/ns3.40-mptcp/ns-allinone-3.40/ns-3.40/contrib/mptcp/model/mp-tcp-socket-base.h"
     "/home/rome/Programming/ns3.40-mptcp/ns-allinone-3.40/ns-3.40/contrib/mptcp/model/mp-tcp-subflow.h"
+    "/home/rome/Programming/ns3.40-mptcp/ns-allinone-3.40/ns-3.40/contrib/mptcp/model/mp-tcp-socket-base.h"
     "/home/rome/Programming/ns3.40-mptcp/ns-allinone-3.40/ns-3.40/build/include/ns3/mptcp-module.h"
     )
 endif()

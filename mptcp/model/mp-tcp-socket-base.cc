@@ -125,13 +125,13 @@ MpTcpSocketBase::GetTypeId(void)
 
 MpTcpSocketBase::MpTcpSocketBase():
     subflows(0), localAddrs(0), remoteAddrs(0)
-//:
+
 //    m_node(node), m_tcp(node->GetObject<TcpL4Protocol>()), mpState(MP_NONE), mpSendState(MP_NONE), mpRecvState(MP_NONE), mpEnabled(false), addrAdvertised(
 //        false), mpTokenRegister(false), subflows(0), localAddrs(0), remoteAddrs(0), lastUsedsFlowIdx(0), totalCwnd(0), localToken(0), remoteToken(0), client(
 //        false), server(false), remoteRecvWnd(1), segmentSize(0), nextTxSequence(1), nextRxSequence(1)
 {
   NS_LOG_FUNCTION(this);
-  //m_node = node;
+  m_node = node;
   //m_tcp = node->GetObject<TcpL4Protocol>();
   mpSendState = MP_NONE;
   mpRecvState = MP_NONE;
